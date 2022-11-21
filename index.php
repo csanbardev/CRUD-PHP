@@ -1,6 +1,6 @@
 <html>
-  <?php require 'includes/head.php' ?>
   <?php require_once 'includes/config.php' ?>
+  <?php require 'includes/head.php' ?>
   <body>
     <div class="container centrar">
       <h1>Base de Datos de Usuarios</h1>

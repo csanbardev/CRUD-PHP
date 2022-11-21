@@ -17,3 +17,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <title>Web PHP</title>
 </head>
+<nav>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="index.php">Inicio</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="listado.php">Listar usuarios</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="adduser.php">Añadir usuarios</a>
+  </li>
+</ul> 
+</nav>
