@@ -11,6 +11,9 @@
     if($resultsquery){
       $msgresultado = '<div class="alert alert-success">'."Consulta realizada correctamente".'</div>';
     }
+    if(isset($_GET['delete'])){
+      $msgresultado = '<div class="alert alert-success">'."Usuario eliminado".'</div>';
+    }
   }catch(PDOException $ex){
     $msgresultado = '<div class="alert alert-danger">'."No se ha hecho la consulta".'</div>';
   }
@@ -36,6 +39,7 @@
           echo '<td>'.$fila['nombre'].'</td>';
           echo '<td>'.$fila['email'].'</td>';
           echo '<td>'.'<a href=actuser.php?id='.$fila['id'].'>Editar</a>'.'</td>';
+          echo '<td>'.'<a href=deluser.php?id='.$fila['id'].'>Eliminar</a>'.'</td>';
           echo '</tr>';
         }
 
