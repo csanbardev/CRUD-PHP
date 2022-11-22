@@ -31,6 +31,7 @@
       <tr>
         <th>Nombre</th>
         <th>Email</th>
+        <th>Foto</th>
         <th>Operaciones</th>
       </tr>
       <?php 
@@ -38,8 +39,8 @@
           echo '<tr>';
           echo '<td>'.$fila['nombre'].'</td>';
           echo '<td>'.$fila['email'].'</td>';
-          echo '<td>'.'<a href=actuser.php?id='.$fila['id'].'>Editar</a>'.'</td>';
-          echo '<td>'.'<a href=deluser.php?id='.$fila['id'].'>Eliminar</a>'.'</td>';
+         echo $fila['imagen']!=null ? "<td><img src='{$fila['imagen']}' width='40'/>{$fila['imagen']}</ td>":"<td>----</td>";
+          echo '<td>'.'<a href=actuser.php?id='.$fila['id'].'>Editar</a> <a href=deluser.php?id='.$fila['id'].'>Eliminar</a>'.'</td>';
           echo '</tr>';
         }
 
