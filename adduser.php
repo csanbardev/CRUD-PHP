@@ -22,14 +22,16 @@
         $nombrefichimg = time()."-".$_FILES['imagen']['name'];
         $movfichimg = move_uploaded_file($_FILES['imagen']['tmp_name'],"uploads/".$nombrefichimg);
         $imagen=$nombrefichimg;
+
+        if($movfichimg){
+          $imagencargada=true;
+        }else{
+          $imagencargada=false;
+          $errores['imagen']="Error: La imagen no se ha cargado";
+        }
       }
 
-      if($movfichimg){
-        $imagencargada=true;
-      }else{
-        $imagencargada=false;
-        $errores['imagen']="Error: La imagen no se ha cargado";
-      }
+      
     }
 
     if(count($errores)==0){
