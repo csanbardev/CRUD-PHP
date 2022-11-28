@@ -32,6 +32,8 @@
       }
 
       
+    }else{ // si no ha especificado imagen, se le inserta una por defecto
+      $imagen="user.png";
     }
 
     if(count($errores)==0){
