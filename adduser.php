@@ -22,7 +22,7 @@
     $apellidos = null;
     $mibiograf = null;
     $password = "";
-    $email = $_POST['txtemail'];
+    $email = "";
     $imagen = null;
 
 
@@ -46,7 +46,9 @@
     ) {
       $apellidos = trim($_POST["txtapellidos"]);
       $apellidos = filter_var($apellidos, FILTER_UNSAFE_RAW);
-    } else {
+    } else if(empty($_POST['txtapellidos'])) {
+      // se permitiría no incluir apellidos
+    }else{
       $errors["txtapellidos"] = "Los apellidos introducidos no son válidos :(";
     }
 
@@ -56,12 +58,10 @@
       $mibiograf = trim($mibiograf); // Eliminamos espacios en blanco
       $mibiograf = htmlspecialchars($mibiograf); //Caract especiales a HTML
       $mibiograf = stripslashes($mibiograf); //Elimina barras invertidas
-    } else {
-      $errors["txtbio"] = "La biografía no puede esta vacía :(";
-    }
+    } 
 
     // validamos el email
-    if (!empty($_POST["txtemail"])) {
+    if (!empty($_POST["txtemail"]) && filter_var($_POST['txtemail'], FILTER_VALIDATE_EMAIL)) {
       $email = filter_var($_POST["txtemail"], FILTER_SANITIZE_EMAIL);
     } else {
       $errors["txtemail"] = "La dirección email introducida no es válida :(";
@@ -69,12 +69,12 @@
     
     // validamos la contraseña
     if (
-      !empty($_POST["txtpass"]) && (strlen($_POST["txtpass"]) > 6)
-      && (strlen($_POST["txtpass"]) <= 10)
+      !empty($_POST["txtpass"]) && (strlen($_POST["txtpass"]) >= 6)
+      
     ) {
-      $password = sha1($txtpass);
+      $password = sha1($_POST['txtpass']);
     } else {
-      $errors["txtpass"] = "Introduzca una contraseña válida (6-10
+      $errors["txtpass"] = "Introduzca una contraseña válida (mínimo 6
   caracteres) :(";
     }
 
