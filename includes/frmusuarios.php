@@ -23,7 +23,7 @@
       <br/>
       <label for="image">Imagen:
         <input type="file" name="imagen" class="form-control" />
-        <?php echo mostrar_error($errors, "image"); ?>
+        <?php echo mostrar_error($errors, "imagen"); ?>
       </label>
       <br/>
       <label for="txtpass">Contraseña:
