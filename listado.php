@@ -98,7 +98,7 @@ try {
 <body>
   <div class="container center">
     <h1>Listar usuarios</h1>
-    <?php echo $msgresultado; ?>
+    <?php echo $msgresultado?>
 
     <table class="table table-striped">
       <tr>
@@ -121,9 +121,9 @@ try {
       ?>
 
     </table>
+    <?php echo $resultado->rowCount()==0? '<br><h5 class="text-center">No hay usuarios registrados</h5>':'' ?>
 
-
-    <ul class="pagination">
+    <ul class="pagination" <?php echo $resultado->rowCount()==0? 'style= "display: none;"': ""?>>
       <li class="page-item">
         <a class="page-link" 
           <?php
