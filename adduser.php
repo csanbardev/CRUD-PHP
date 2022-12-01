@@ -35,7 +35,13 @@
   
         if($query){
           $msgresultado = '<div class="alert alert-success">'."Usuario registrado correctamente".'</div>';
+
+          // llamo al procedimiento para registrar en el log
+
+          insertarLog("insertar", $conexion);
         }
+
+        
       }catch(PDOException $ex){
         $msgresultado = '<div class="alert alert-danger">'."Fallo al registrar <br>".$ex->getMessage().'</div>';
         // die();

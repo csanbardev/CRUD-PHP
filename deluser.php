@@ -11,6 +11,7 @@
       $query->execute(['id'=>$id]);
 
       if($query){
+        insertarLog("eliminar", $conexion);
         header("Location: listado.php?delete=true");
       }
     }catch(PDOException $ex){

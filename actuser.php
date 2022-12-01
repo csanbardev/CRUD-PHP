@@ -113,6 +113,7 @@ if (isset($_POST['submit'])) {
 
       if ($query) {
         $msgresultado = '<div class="alert alert-success">' . "El usuario se ha actualizado correctamente" . '</div>';
+        insertarLog("actualizar", $conexion);
       }
     } catch (PDOException $ex) {
       $msgresultado = '<div class="alert alert-danger">' . "El usuario no se ha actualizado <br>" .
