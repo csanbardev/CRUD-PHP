@@ -90,7 +90,7 @@ try {
         echo '<td>' . $fila['nombre'] . '</td>';
         echo '<td>' . $fila['email'] . '</td>';
         echo $fila['imagen'] != null ? "<td><img src='uploads/{$fila['imagen']}' width='40'/>{$fila['imagen']}</ td>" : "<td>----</td>";
-        echo '<td>' . '<a href=actuser.php?id=' . $fila['id'] . '>Editar</a> <a href=deluser.php?id=' . $fila['id'] . '>Eliminar</a>' . '</td>';
+        echo '<td>' . '<a href=detalle.php?id=' . $fila['id'] . '>Detalle</a> <a href=actuser.php?id=' . $fila['id'] . '>Editar</a> <a href=deluser.php?id=' . $fila['id'] . '>Eliminar</a>' . '</td>';
         echo '</tr>';
       }
 
