@@ -75,6 +75,7 @@ try {
     <h1>Listar usuarios</h1>
     <?php echo $msgresultado?>
 
+    <!-- Tabla del listado-->
     <table class="table table-striped">
       <tr>
         <th>Nombre</th>
@@ -97,8 +98,9 @@ try {
 
     </table>
     <?php echo $resultado->rowCount()==0? '<br><h5 class="text-center">No hay usuarios registrados</h5>':'' ?>
-
-    <ul class="pagination" <?php echo $resultado->rowCount()==0? 'style= "display: none;"': ""?>>
+    
+    <!-- Bloque de paginación del listado -->
+    <ul class="pagination" <?php echo $resultado->rowCount()<=$pagesize? 'style= "display: none;"': ""?>>
       <li class="page-item">
         <a class="page-link" 
           <?php
@@ -132,7 +134,8 @@ try {
       </li>
     </ul>
     <br>
-    <form action="listado.php" method="post">
+    <!-- Bloque de imprimir en PDF -->
+    <form action="listado.php" method="post" <?php echo $resultado->rowCount()<=$pagesize? 'style= "display: none;"': ""?>>
       <input name="submit" class="btn btn-success" type="submit" value="Imprimir en PDF">
     </form>
   </div>
