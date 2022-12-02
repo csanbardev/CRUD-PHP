@@ -43,13 +43,11 @@ if (!empty($_POST["txtbio"])) {
 }
 
 // validamos el email
-/*
 if (!empty($_POST["txtemail"]) && filter_var($_POST['txtemail'], FILTER_VALIDATE_EMAIL)) {
   $email = filter_var($_POST["txtemail"], FILTER_SANITIZE_EMAIL);
 } else {
   $errors["txtemail"] = "La dirección email introducida no es válida :(";
 }
-*/
 
 // validamos la contraseña
 if (

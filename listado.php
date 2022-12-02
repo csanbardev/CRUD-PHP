@@ -1,5 +1,8 @@
 <?php
-require_once 'includes/config.php';
+require_once 'includes/config.php'; 
+// requiero la aplicación del pdf
+require_once 'vendor/autoload.php';
+use Spipu\Html2Pdf\Html2Pdf;
 
 $msgresultado = "";
 
@@ -31,50 +34,22 @@ try {
 
     $totalpaginas = ceil($numfilas / $pagesize);
 
-    // si pide que imprima pdf
-    if (isset($_POST['submit'])) {
-      ob_start();
-      require 'fpdf/fpdf.php';
-
-      // creo el documento
-      $pdf = new FPDF();
-      $pdf->AddPage();
-
-      // le añado el texto
-      $pdf->SetTitle("Listado de usuarios", true);
-      $pdf->SetFont('Arial', '', 12);
-      while ($fila = $resultado->fetch()) {
-        $pdf->MultiCell(
-          0,
-          10,
-          "Nombre: " . $fila['nombre'],
-          0,
-          1
-        );
-        $pdf->MultiCell(
-          0,
-          10,
-          "Email: " . $fila['email'],
-          0,
-          1
-        );
-        $pdf->MultiCell(
-          0,
-          10,
-          "Imagen de perfil: " . $fila['imagen'] != null ? $fila['imagen'] : "----",
-          0,
-          1
-        );
-        if ($fila['imagen'] != null) {
-          $pdf->Ln();
-          $pdf->Image("uploads/" . $fila['imagen'], null, null, 40);
-        }
-        $pdf->Ln();
+    // imprimimos en pdf cuando lo solicite
+    if(isset($_POST['submit'])&&$resultado->rowCount()!=0){
+      ob_end_clean();
+      $html = "hola";
+      $html2pdf = new Html2Pdf();
+      $html2pdf->writeHTML("<h1>Listado de usuarios</h1>");
+      while($fila = $resultado->fetch()){
+        $html2pdf->writeHTML("Nombre: ".$fila['nombre']."<br>");
+        $html2pdf->writeHTML("Apellidos: ".$fila['apellidos']."<br>");
+        $html2pdf->writeHTML("Biografía: ".$fila['biografia']."<br>");
+        $html2pdf->writeHTML("Email: ".$fila['email']."<br>");
+        // $html2pdf->writeHTML("Imagen de perfil: "."<img src='uploads/".$fila['imagen']."'/>"."<br>");
+        $html2pdf->writeHTML("<br>");
       }
-
-      // genero el archivo pdf
-      $pdf->Output('I', 'prueba2.pdf', true);
-      ob_end_flush();
+      $html2pdf->output();
+      ob_end_clean();
     }
 
     $resultado->closeCursor(); // cierro el cursor
