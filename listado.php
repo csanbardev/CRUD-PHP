@@ -58,8 +58,10 @@ try {
     $resultado = $conexion->prepare($sqllimite);
     $resultado->execute(array());
   }
-  if (isset($_GET['delete'])) {
+  if (isset($_GET['delete'])&&$_GET['delete']=="true") {
     $msgresultado = '<div class="alert alert-success">' . "Usuario eliminado" . '</div>';
+  }else if(isset($_GET['delete'])&&$_GET['delete']=="false"){
+    $msgresultado = '<div class="alert alert-danger">' . "Usuario no eliminado" . '</div>';
   }
 } catch (PDOException $ex) {
   $msgresultado = '<div class="alert alert-danger">' . "No se ha hecho la consulta" . '</div>';
