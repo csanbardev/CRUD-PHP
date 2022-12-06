@@ -37,7 +37,6 @@ try {
     // imprimimos en pdf cuando lo solicite
     if(isset($_POST['submit'])&&$resultado->rowCount()!=0){
       ob_end_clean();
-      $html = "hola";
       $html2pdf = new Html2Pdf();
       $html2pdf->writeHTML("<h1>Listado de usuarios</h1>");
       while($fila = $resultado->fetch()){
@@ -137,7 +136,7 @@ try {
     </ul>
     <br>
     <!-- Bloque de imprimir en PDF -->
-    <form action="listado.php" method="post" <?php echo $resultado->rowCount()<=$pagesize? 'style= "display: none;"': ""?>>
+    <form action="listado.php" method="post" <?php echo $resultado->rowCount()==0? 'style= "display: none;"': ""?>>
       <input name="submit" class="btn btn-success" type="submit" value="Imprimir en PDF">
     </form>
   </div>
