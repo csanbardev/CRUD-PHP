@@ -85,7 +85,7 @@ try {
         <th>Operaciones</th>
       </tr>
       <?php
-
+      // recorro la variable resultado para rellenar las celdas
       while ($fila = $resultado->fetch()) {
         echo '<tr>';
         echo '<td>' . $fila['nombre'] . '</td>';

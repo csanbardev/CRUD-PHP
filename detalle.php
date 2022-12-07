@@ -39,7 +39,7 @@ try {
     </label>
     <br />
     <label for="txtbio">Biografia:
-      <textarea name="txtbio" class="form-control" value=<?php echo $resultado['biografia'] ?> readonly></textarea>
+      <textarea name="txtbio" class="form-control"  readonly ><?php echo $resultado['biografia'] ?></textarea>
     </label>
     <br />
     <label for="txtemail">Correo:

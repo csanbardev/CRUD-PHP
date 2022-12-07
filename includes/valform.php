@@ -35,7 +35,7 @@ if (
 }
 
 // validamos la biografía
-if (!empty($_POST["txtbio"])) {
+if (!empty($_POST["txtbio"])&&filter_var($_POST['txtbio'], FILTER_UNSAFE_RAW)) {
   $mibiograf = $_POST["txtbio"];
   $mibiograf = trim($mibiograf); // Eliminamos espacios en blanco
   $mibiograf = htmlspecialchars($mibiograf); //Caract especiales a HTML

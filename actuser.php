@@ -22,6 +22,7 @@ function mostrar_error($errors, $campo)
   return $alert;
 }
 
+// si intenta actualizar los datos
 if (isset($_POST['submit'])) {
   $id = $_POST['id'];
   $nombre = "";
@@ -72,7 +73,7 @@ if (isset($_POST['submit'])) {
     $errors["txtemail"] = "La dirección email introducida no es válida :(";
   }
 
-
+  // introduzco los nuevos datos validados
   $nuevonombre = $nombre;
   $nuevoemail = $email;
   $nuevaimagen = "";
@@ -124,13 +125,16 @@ if (isset($_POST['submit'])) {
   }
 
 
-
+  
   $valnombre = $nuevonombre;
   $valemail = $nuevoemail;
   $valimagen = $nuevaimagen;
   $valbio = $nuevabio;
   $valapellidos = $nuevosapellidos;
-} else {
+
+  // si no ha actualizado y, por tanto, estará por primera vez en la página
+  // recuperará los datos del usuario que se le haya pedido
+} else { 
 
   if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = $_GET['id'];
@@ -144,6 +148,7 @@ if (isset($_POST['submit'])) {
         $msgresultado = '<div class="alert alert-success">' . "Los datos se obtuvieron correctamente" . '</div>';
         $fila = $query->fetch(PDO::FETCH_ASSOC);
 
+        // relleno los datos para mostarlos en sus respectivos campos
         $valnombre = $fila['nombre'];
         $valemail = $fila['email'];
         $valimagen = $fila['imagen'];
@@ -180,7 +185,7 @@ if (isset($_POST['submit'])) {
       </label>
       <br />
       <label for="txtbio">Biografia:
-        <textarea name="txtbio" class="form-control" value=<?php echo $valbio; ?>></textarea>
+        <textarea name="txtbio" class="form-control" ><?php echo $valbio; ?></textarea>
         <?php echo mostrar_error($errors, "txtbio"); ?>
       </label>
       <br>

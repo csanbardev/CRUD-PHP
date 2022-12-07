@@ -2,7 +2,7 @@
 require_once 'includes/config.php';
 $msgresultado = "";
 
-
+// si pulsa al botón input de eliminar
 if (isset($_POST['delete'])) {
   $id = $_POST['id'];
   try {
@@ -12,12 +12,16 @@ if (isset($_POST['delete'])) {
 
     if ($query) {
       insertarLog("eliminar", $conexion);
+      // redirige al listado
       header("Location: listado.php?delete=true");
     }
   } catch (PDOException $ex) {
     echo '<div class="alert alert-success">' . "Ha fallado la eliminación del usuario<br>" . $ex->getMessage() . '</div>';
   }
+
+  // si pulsa al botón input de cancelar
 } else if (isset($_POST['cancel'])) {
+  // redirige al listado
   header("Location: listado.php?delete=false");
 }
 
